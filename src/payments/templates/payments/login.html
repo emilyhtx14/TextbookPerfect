@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log In</title>
+</head>
+<body>
+    {% include 'reviews/navbar.html' %}
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br>
+
+
+<div class = 'center'>
+    <form action = "/payments/login" method = 'POST'>
+       {%  csrf_token %}
+        <br>
+        {{ form.as_p }}
+        <input id ='login' class = "center" type="submit" value = 'Login'/>
+
+    </form>
+    <br>
+</div>
+
+</body>
+<style>
+
+    #login{
+        background-color: white;
+    }
+
+    .center{
+        text-align: center;
+        margin-left: 15%;
+        margin-right: 30%;
+        border-radius: 20px;
+        background-image:url("https://t4.ftcdn.net/jpg/02/92/00/77/360_F_292007743_h413LUfBpsyXi8uvuBToQW0bw9b3x05U.jpg");
+        background-size:contain;
+        font-family:Raleway;
+        font-color: white;
+    }
+
+    .font{
+
+    }
+
+    body{
+        background-position:center;
+        background-size:cover;
+        /*background-image: url('{% static 'bookTrade/retro.jpg' %}');*/
+        /* clouds */
+        /*background-image:url("https://t4.ftcdn.net/jpg/02/92/00/77/360_F_292007743_h413LUfBpsyXi8uvuBToQW0bw9b3x05U.jpg"); */
+
+        /*background-image: url("https://wallpaperaccess.com/full/2014465.png");*/
+
+        /*super crazy city one, nice b/c very retro?*/
+        /*background-image: url("https://i.pinimg.com/originals/9a/68/19/9a6819d7dfb8aa400e3579dac39298e9.jpg");*/
+
+        /* cherry blossoms --> really pretty one */
+        background-image: url("https://i.pinimg.com/originals/23/66/f5/2366f58fd970d2772f3aec52179b0873.jpg");
+
+        background-position-x:-370px;
+        background-position-y:-769px;
+
+        min-height: 100%;
+
+        /* background-image: url("https://wallpapercave.com/wp/wp5939575.jpg"); */
+    }
+
+</style>
+</html>
+

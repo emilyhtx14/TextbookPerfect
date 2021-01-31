@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supermarkets Near You</title>
+    <title>Simple Map</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+    <script src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'><</script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&language=en&key=AIzaSyChj4_T1N200RhQMuyv-kmQDuKKa7PwuIg&map_ids=e55e7b719a97e21d&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 90%;
+        margin: 30px;
+        padding: 30px;
+      }
+    </style>
+    <script>
+
+      let map;
+
+      function initMap() {
+          const ucdavis = { lat: 38.5382, lng: -121.7617 };
+          const cuarto = {lat: 38.54731412084699,lng: -121.76317699776695};
+          const trader = {lat: 38.54677139605379, lng: -121.76149980358977}
+        const map = new google.maps.Map(document.getElementById("map"),
+        {
+          center: trader,
+          zoom: 16,
+          mapId: 'e55e7b719a97e21d',
+
+        });
+        const marker = new google.maps.Marker({
+            position: ucdavis,
+            label: 'you are here',
+            map: map
+        })
+
+        const marker1 = new google.maps.Marker({
+            position: trader,
+            label: 'supermarket',
+            map: map
+        })
+
+        const marker2 = new google.maps.Marker({
+            position: cuarto,
+            label: 'supermarket',
+            map: map
+        })
+
+        marker1.addListener("click", () => {
+            window.location.replace('http://localhost:4000/accounts/deliveries')
+        })
+      }
+    </script>
+</head>
+<body>
+
+
+<form id="distance_form" >
+    {%  csrf_token %}
+    <input id = 'to_places' placeholder = 'Enter Your location'>
+    <input id = 'destination' placeholder = 'Enter a destination' name = 'destination' required />
+    <input type="submit" value = 'Calculate' class = 'butn butn-primary'/>
+</form>
+<script>
+    $(function() {
+        google.maps.event.addDomListener(window, 'load', function(){
+            var from_places = new googlemaps.places.Autocomplete(document.getElementById('from_places'));
+            var to_places = new googlemaps.places.Autocomplete(document.getElementById('yo_places'));
+            google_maps.event.addListener(from_places, 'place_changed', function(){
+                var from_place = from_place.getPlace();
+                var from_address = from_place.formatted_address;
+                $('origin').val(from_address);
+
+            });
+
+            google.maps.event.addListener(to_places, 'place_changed', function() {
+                var to_place = to_place.getPlace();
+                var to_address = to_place.formatted_address;
+                $('#destination').val(to_address);
+            });
+        });
+    });
+
+    $(function() {
+        google.maps.event.addDomListener(window, 'load', function(){
+        function calculateDistance() {
+            var origin = $('#origin').val();
+            var destination = $('#destination').val();
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations:[destination],
+                    travelMode: google.maps.TravelMode.DRIVING,
+                    unitSystem: google.maps.UnitSystem.IMPERIAL,
+                    avoidHighways: false,
+                    avoidTolls: false
+
+                }, callback);
+        }
+        function callback(response, status){
+            var origin = response.originAddresses[0];
+            var destinaton = response.destinationAddresses[0];
+            var distance = response.rows[0].elements[0].distance;
+            var duration = response.rows[0].elements[0].duration;
+            var distance_in_kilo = distance.value/1000;
+            var distance_in_mile = distance.value/1609.34;
+            var duration_text = duration.text;
+            var duration_value = duration.value;
+            $('#in_mile').text(distance_in_mile.toFixed(2));
+            $('#in_kilo').text(distance_in_kilo.toFixed(2));
+            $('#duration_text').text(duration_text);
+            $('#duration_value').text(duration_value);
+            $('#from').text(origin);
+            $('#to').text(destination);
+
+        }
+
+        $('#distance_form').submit(function(e){
+            e.preventDefault();
+            calculateDistance()
+        });
+        });
+    });
+
+</script>
+      <div id="map"></div>
+      {{distance_in_mile }}
+
+</body>

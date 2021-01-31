@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+</head>
+<body>
+
+{% include 'reviews/navbar.html' %}
+<br><br><br><br>
+<br><br><br><br>
+<br><br><br><br>
+<form action = "" method = 'POST'>
+
+    {%  csrf_token %}
+    <h1>
+        Buyers, Sellers, Study Partners!
+    </h1>
+    <div id="descr">
+        Are you looking for textbooks to buy/sell?
+        <br> Are you looking for a study partner?
+        <br> This is the place to be!
+        <br> Fill out the form below to see who you match up with!
+    </div>
+    <p> Enter your name: <br> {{ form.name }} </p>
+
+    <style>
+        h1{
+            margin-left:10%;
+            margin-right:10%;
+            text-align: center;
+            font-family:'Raleway';
+        }
+
+        div#descr{
+            margin-left:10%;
+            margin-right:10%;
+            text-align: center;
+            font-family:'Raleway';
+
+        }
+        p{
+            margin-left: 10%;
+            margin-right: 10%;
+            color: #461e87;
+            text-align: center;
+        }
+    </style>
+
+    <p> What city do you live in?
+    <br>{{ form.city }}</p>
+
+    <p> What book subjects are you interested in selling?
+    <br>{{ form.sell_topics }} </p>
+
+    <p> Selling price?
+    <br>{{ form.sell_price }}</p>
+
+    <p> What book subjects are you interested in buying?
+    <br>{{ form.buy_topics }}</p>
+
+    <p> Ideal Study Group Subjects?
+    <br>{{ form.study_topics }}</p>
+
+    <p> What is your email?
+    <br>{{ form.email }}</p>
+
+    <p><input type="submit" value = 'Save'/>
+        </p>
+    <br>
+</form>
+<!--#ece1f5-->
+<style>
+    form{
+        position:absolute;
+        margin-left:25%;
+        margin-right: 20%;
+        /*
+        left: 50%;
+        margin-left: -200px; (half the element width))
+        */
+
+        width: 50%;
+        background-color: #ece1f5 ;
+
+        /*background-image: url("https://wallpaperaccess.com/full/2014465.png");*/
+        /*background-image: url("https://cutewallpaper.org/21/retro-anime-aesthetic-wallpaper/63-Trendy-Retro-Anime-Aesthetic-Wallpaper-Desktop.jpg");*/
+        /*background-image: url("https://i.imgur.com/SvnuN4M.png");*/
+        background-size:contain;
+
+        border-radius: 20px;
+        font-family:'Poiret One','Lobster';
+        font-family:'Raleway';
+        font-size: 20px;
+    }
+</style>
+
+ <!--#decced-->
+</body>
+    <style>
+        body{
+        background-position:center;
+        background-size:cover;
+        /*background-image: url('{% static 'bookTrade/retro.jpg' %}');*/
+        /* clouds */
+        /*background-image:url("https://t4.ftcdn.net/jpg/02/92/00/77/360_F_292007743_h413LUfBpsyXi8uvuBToQW0bw9b3x05U.jpg"); */
+
+        /*background-image: url("https://wallpaperaccess.com/full/2014465.png");*/
+
+        /*super crazy city one, nice b/c very retro?*/
+        /*background-image: url("https://i.pinimg.com/originals/9a/68/19/9a6819d7dfb8aa400e3579dac39298e9.jpg");*/
+
+        /* cherry blossoms --> really pretty one */
+        background-image: url("https://i.pinimg.com/originals/23/66/f5/2366f58fd970d2772f3aec52179b0873.jpg");
+
+        background-position-x:-370px;
+        background-position-y:-769px;
+
+        min-height: 100%;
+
+        /* background-image: url("https://wallpapercave.com/wp/wp5939575.jpg"); */
+    }
+    </style>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html -->
+    <form action = "/payments/signup" method = 'POST'>
+       {%  csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value = 'Signup'/>
+    </form>
+</body>
+</html>

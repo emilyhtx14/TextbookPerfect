@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" >
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+<body>
+
+{% include 'reviews/navbar.html' %}
+<br>
+     <br>
+    <div class = "title">
+        <br>
+            Book Exchange
+        <br>
+        <br>
+    </div>
+    <h2>
+
+    </h2>
+
+    <style>
+        .title{
+            color: darkblue;
+            text-align:center;
+            font-size: 70px;
+            text-shadow:3px 3px #b396e3;text-align: center;
+            background-image: url("https://t4.ftcdn.net/jpg/02/92/00/77/360_F_292007743_h413LUfBpsyXi8uvuBToQW0bw9b3x05U.jpg");
+        }
+        h2{
+            color:#461e87;
+            text-align: center;
+            font-size: 20px;
+            font-style:italic;
+            text-shadow:1px 1px #a2adbc;
+        }
+    </style>
+    <br>
+    {% for user in user_list %}
+        <div class = "box">
+        {%  if user.name != last_user %}
+            <br><span style="font-weight: 550; color: #461e87; margin-left: 30px">  Name:</span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.name }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>   Book Selling Options:</span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.sell_topics }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>   Book Buying Preferences:</span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.buy_topics }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>   Ideal Study Group Subjects:  </span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.study_topics }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>  City of Residence: </span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.city }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>   Contact Information: </span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.email }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>  Book Price: </span>
+                    <span style="font-weight: 500; color: #461e87;" >${{ user.sell_price }}</span>
+
+             {% for key, val in shipping.items %}
+                {% if key == user.name %}
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>Estimated Shipping Fee: </span>
+                    <span style="font-weight: 500; color: #461e87;" >${{ val }}</span>
+                {%  endif %}
+            {%  endfor %}
+
+            {% for key, val in distances.items %}
+                {% if key == user.name %}
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>Distance: </span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ val }}</span>
+
+                {%  endif %}
+            {%  endfor %}
+
+
+            {% for key, val in points.items %}
+                {% if key == user.name %}
+                                <br><span style="font-weight: 500;border-width: thin; border-radius: 30px; font-family:'Raleway', cursive;
+            {% if val < 0 %}
+                    background-color: palevioletred;
+                {% elif val >= 0 and val <= 50 %}
+                    background-color: lightsalmon;
+                {% elif val > 50 and val <= 100%}
+                    background-color: lightgoldenrodyellow;
+                {% elif val > 100%}
+                    background-color: lightgreen;
+                {% endif %}
+                margin-left: 30px; font-size:20px";> Compatibility Score:
+                {% if val < 0 %}
+                    {{val}}
+                    Not Recommended
+                {% elif val >= 0 and val <= 50 %}
+                    +{{val}}
+                    Low Match Recommendation
+                {% elif val > 50 and val <= 100%}
+                    +{{val}}
+                    Recommended Match
+                {% elif val > 100 %}
+                    +{{val}}
+                    Highly-Recommended Match
+            {% endif %}
+        </span>
+                {%  endif %}
+
+            {%  endfor %}
+        <hr>
+        {% else %}
+
+             <br><span style="font-weight: 550; color: #461e87; margin-left: 30px">  Your Profile:</span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.name }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>   Book Selling Options:</span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.sell_topics }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>   Book Buying Preferences:</span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.buy_topics }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>   Ideal Study Group Subjects:  </span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.study_topics }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>  City of Residence: </span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.city }}</span>
+                <br><span style="font-weight: 550; color: #461e87; margin-left: 30px";>   Contact Information: </span>
+                    <span style="font-weight: 500; color: #461e87;" >{{ user.email }}</span>
+
+        {% endif %}
+        </div>
+        <br>
+    {%  endfor %}
+
+
+</body>
+
+<style>
+
+    .box{
+        background-color:rgba(168, 235, 231, 0.9);
+        text-align:center;
+        animation-name: example;
+        animation-duration: 15s;
+        border-radius: 40px;
+        margin-left:18%;
+        margin-right: 18%;
+        font-size: 20px;
+    }
+
+
+    @keyframes example {
+          0%   {background-color:rgba(126,240,208,0.8)}
+          25%  {background-color:rgba(126,233,240,0.6)}
+          50%  {background-color:rgba(224,241,217,0.8)}
+          75%  {background-color:rgba(155,126,240,0.8)}
+          100% {background-color:rgba(168, 235, 231, 0.9)}
+    }
+
+    body {
+        background-position:center;
+
+        background-size:contain;
+        /*background-image: url('{% static 'bookTrade/retro.jpg' %}');*/
+
+        /* clouds */
+        /*background-image:url("https://t4.ftcdn.net/jpg/02/92/00/77/360_F_292007743_h413LUfBpsyXi8uvuBToQW0bw9b3x05U.jpg"); */
+
+        /*background-image: url("https://wallpaperaccess.com/full/2014465.png");*/
+
+        /*super crazy city one, nice b/c very retro?*/
+        /*background-image: url("https://i.pinimg.com/originals/9a/68/19/9a6819d7dfb8aa400e3579dac39298e9.jpg");*/
+
+        /* cherry blossoms --> really pretty one */
+        /*background-image: url("https://i.pinimg.com/originals/23/66/f5/2366f58fd970d2772f3aec52179b0873.jpg");*/
+
+        background-position-x:-370px;
+        background-position-y:-769px;
+        min-height: 100%;
+
+        background-image: url("https://wallpapercave.com/wp/wp5939575.jpg");
+
+
+        /*
+
+        background-position: center;
+        background-size: cover;
+        background-color: lightskyblue;
+        min-height: 100%; */
+    }
+</style>
+
+</html>

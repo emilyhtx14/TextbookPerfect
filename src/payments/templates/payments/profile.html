@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{{ msg }}
+{{ username }}
+
+<div id="map"></div>
+    <form action = "/payments/logout" method = "POST">
+        {%  csrf_token %}
+        <button type = "submit">Logout</button>
+    </form>
+</body>
+</html>

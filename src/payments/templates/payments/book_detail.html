@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for product in goods %}
+    <br>
+    {% if product.picture %}
+
+        <img src="{{ product.picture.url }}">
+        <style>
+            img{
+                max-width:35%;
+                margin:auto;
+                margin-left:10%;
+            }
+        </style>
+
+    {% endif %}
+    <br>
+{% endfor %}
+
+</body>
+</html>
