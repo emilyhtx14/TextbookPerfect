@@ -33,28 +33,6 @@ def post(self, request):
     public_uri = Upload.upload_image(image, image.name)
     return HttpResponse("<img src='%s'/>" % public_uri)
 
-"""
-def maps_view(request):
-    api_key = 'AIzaSyChj4_T1N200RhQMuyv-kmQDuKKa7PwuIg'
-    origin = input("Enter a home address") #'2500+E+Kearney+Springfield+MO+65898'
-    destination = input("Enter a work address") #'405+N+Jefferson+Ave+Springfield+MO+65806'
-    url = ('https://maps.googleapis.com/maps/api/distancematrix/json'
-           + '?language=en-US&units=imperial'
-           + '&origins={}'
-           + '&destinations={}'
-           + '&key={}'
-           ).format(origin, destination, api_key)
-    response = urllib.request.urlopen(url)
-    r = json.loads(response.read())
-    time = r['rows'][0]['elements'][0]['duration']['text']
-    miles = r['rows'][0]['elements'][0]['distance']['text']
-    print("\n The total travel time from home to work by car is", time)
-    print("\n The total distance is", miles)
-
-    return render(request, "reviews/maps_view.html", {})
-
-"""
-
 
 def maps_view(request):
     form = MatchingForm(request.POST or None)
